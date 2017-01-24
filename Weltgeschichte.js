@@ -17,16 +17,37 @@ function starten(){
 		
 		initialize: function(element, options, tangle, time, zeitZaehler, oldTime)
 		{
+			
+			this.bigWorldMap = new Image();
+			this.speedy = new Image();
+			this.speechbubble = new Array();
+		
+			this.bigWorldMap.src = "assets/landschaft.png";
+			this.speedy.src = "assets/graphics/INDE_Speedy.png";
+		
+			for(i = 1; i < 15; i++)
+			{
+				var sb = new Image();
+				sb.src = "assets/speechbubble/speechbubble_" + i + ".png";
+				this.speechbubble.push(sb);
+			}
+			
 			element.onclick = function(ev)
 			{
 				pos = getMousePosition(element, ev);
-				if(pos.x <= 200 && tangle.getValue(zeitZaehler) > 0){
-					tangle.setValue(zeitZaehler, tangle.getValue(zeitZaehler)-1 );
-					keyframe(tangle.getValue(zeitZaehler));
-				}else if(pos.x >= (element.width - 200) && tangle.getValue(zeitZaehler) < 13){
-					tangle.setValue(zeitZaehler, tangle.getValue(zeitZaehler)+1 );
-					keyframe(tangle.getValue(zeitZaehler));
+				if(!clicked)
+				{
+					
+					if(pos.x <= 200 && tangle.getValue(zeitZaehler) > 0){
+						tangle.setValue(zeitZaehler, tangle.getValue(zeitZaehler)-1 );
+						keyframe(tangle.getValue(zeitZaehler));
+					}else if(pos.x >= (element.width - 200) && tangle.getValue(zeitZaehler) < 13){
+						tangle.setValue(zeitZaehler, tangle.getValue(zeitZaehler)+1 );
+						keyframe(tangle.getValue(zeitZaehler));
+					}
+					
 				}
+				
 			}
 			this.ctx = element.getContext("2d");
 			
@@ -89,16 +110,20 @@ function starten(){
 			var isMinus = t - ot;
 			var step = 0;
 			
+			bigWorldMap = this.bigWorldMap;
+			speedy = this.speedy;
+			speechbubble = this.speechbubble;
+			
 			if(!clicked || isMinus == 0){
 				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
-				draw(positionWorldmap);
+				draw(positionWorldmap, t);
 			}else{
 				if(isMinus > 0){
 					
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
-						draw(positionWorldmap);
+						draw(positionWorldmap, ot);
 						if(step < 3 && (t-ot) > 30){step+=0.1;} else if((t-ot) <= 30 && (t-ot) > 0.1){step-=0.1;};
 						if(step < 0.1){step = 0.1;};
 						ot+=step;
@@ -113,7 +138,7 @@ function starten(){
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
-						draw(positionWorldmap);
+						draw(positionWorldmap, ot);
 						if(step < 3 && (ot-t) > 30){step+=0.1;} else if((ot-t) <= 30 && (ot-t) > 0.1){step-=0.1;};
 						if(step < 0.1){step = 0.1;};
 						ot-=step;
@@ -126,12 +151,13 @@ function starten(){
 				}
 			}
 			
-			function draw(value)
+			function draw(value_wm, value_speedy)
 			{
-				context.clearRect(0, 0, 1680, 100);
-				bigWorldMap = new Image();
-				bigWorldMap.src = "assets/landschaft.png";
-				context.drawImage(bigWorldMap,0+value,0);
+				context.clearRect(0, 0, 1680, 600);
+				
+				context.drawImage(bigWorldMap,0+value_wm,0);
+				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 550)), 500);
+				context.drawImage(speechbubble[zZ], 150+((t/zrwidth)*(element.width - 550)), 200);
 			}
 		}
 	};
@@ -142,11 +168,18 @@ function starten(){
 		{
 			this.time = 0;
 			this.md = false;
+			
+			this.worldmap = new Image();
+			this.selector = new Image();
+			
+			this.worldmap.src = "assets/worldmap.jpg";
+			this.selector.src = "assets/selector.png";
+			
 			element.onmousedown = function(){this.md = true};
 			element.onmouseup = function(){this.md = false};
 			element.onmouseleave = function(){this.md = false};
 			element.onmousemove = function move(ev){
-				if(this.md){
+				if(this.md && !clicked){
 					pos = getMousePosition(element, ev);
 					if(pos.x < 50){
 						this.time = 0;
@@ -229,12 +262,8 @@ function starten(){
 		{
 			var context = this.ctx;
 			context.clearRect(0, 0, 800, 100);
-			worldmap = new Image();
-			selector = new Image();
-			worldmap.src = "assets/worldmap.jpg";
-			selector.src = "assets/selector.png";
-			context.drawImage(worldmap,10,0);
-			context.drawImage(selector,0+value,0);
+			context.drawImage(this.worldmap,10,0);
+			context.drawImage(this.selector,0+value,0);
 		}
 	};
 	
@@ -243,7 +272,7 @@ function starten(){
 		{
 			this.time = 0;
 			this.zeitZaehler = 0;
-			this. oldTime = 0;
+			this.oldTime = 0;
 		},
 		update:     function () {}
 	});
