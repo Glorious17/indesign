@@ -2,7 +2,6 @@ function starten(){
 	
 	var zrwidth = 700;
 	var backgroundWidth = 8322;
-	var clicked = false;
 	
 	function getMousePosition(canvas, ev)
 	{
@@ -37,7 +36,7 @@ function starten(){
 			element.onclick = function(ev)
 			{
 				pos = getMousePosition(element, ev);
-				if(!clicked)
+				if(!tangle.getValue("clicked"))
 				{
 					var zZ = tangle.getValue(zeitZaehler);
 					if(pos.x <= 200 && zZ > 0)
@@ -101,10 +100,7 @@ function starten(){
 						divident = 0.0025;
 						break;
 				}
-				clicked = true;
-				tangle.setValue(zeitZaehler, zZ);
-				tangle.setValue(oldTime, tangle.getValue(time));
-				tangle.setValue(time, (1 - (divident/4.6)) * zrwidth);
+				tangle.setValues({clicked:true, zeitZaehler:zZ, oldTime:tangle.getValue(time), time:(1 - (divident/4.6)) * zrwidth});
 			}
 		},
 		
@@ -121,7 +117,7 @@ function starten(){
 			speedy = this.speedy;
 			speechbubble = this.speechbubble;
 			
-			if(!clicked){
+			if(!tangleObject.getValue("clicked")){
 				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
 				draw(positionWorldmap, t);
 			}else{
@@ -179,7 +175,7 @@ function starten(){
 							draw(positionWorldmap, t);
 							if(opacity >= 1)
 							{
-								clicked = false;
+								tangleObject.setValue("clicked", false);
 								clearInterval(animation);
 							}
 						}, 50);
@@ -193,7 +189,7 @@ function starten(){
 	
 	Tangle.classes.Zeitregler = {
 		
-		initialize: function(element, options, tangle, time)
+		initialize: function(element, options, tangle, time, clicked)
 		{
 			this.time = 0;
 			this.md = false;
@@ -204,11 +200,11 @@ function starten(){
 			this.worldmap.src = "assets/worldmap.jpg";
 			this.selector.src = "assets/selector.png";
 			
-			element.onmousedown = function(){this.md = true; tangle.setValue("standStill", false);};
-			element.onmouseup = function(){this.md = false; tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false);};
+			element.onmousedown = function(){this.md = true; if(!tangle.getValue(clicked)){tangle.setValue("standStill", false)};};
+			element.onmouseup = function(){this.md = false; if(!tangle.getValue(clicked)){tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false);}};
 			element.onmouseleave = function(){ if(this.md){ tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false); this.md = false; }};
 			element.onmousemove = function move(ev){
-				if(this.md){
+				if(this.md && !tangle.getValue(clicked)){
 					pos = getMousePosition(element, ev);
 					if(pos.x < 50){
 						this.time = 0;
@@ -282,7 +278,7 @@ function starten(){
 			this.ctx = element.getContext("2d");
 		},
 		
-		update: function (element, value)
+		update: function (element, value, c)
 		{
 			this.draw(value);
 		},
@@ -305,6 +301,7 @@ function starten(){
 			this.oldTime = 0;
 			this.standStill = true;
 			this.intervallStarted = false;
+			this.clicked = false;
 		},
 		update:     function () {}
 	});
