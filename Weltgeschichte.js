@@ -15,8 +15,10 @@ function starten(){
 	
 	Tangle.classes.MainView = {
 		
-		initialize: function(element, options, tangle, time, zeitZaehler, oldTime)
+		initialize: function(element, options, tangle, time, zeitZaehler, oldTime, sS, iS)
 		{
+			this.tangleObject = tangle;
+			this.ctx = element.getContext("2d");
 			
 			this.bigWorldMap = new Image();
 			this.speedy = new Image();
@@ -37,19 +39,20 @@ function starten(){
 				pos = getMousePosition(element, ev);
 				if(!clicked)
 				{
-					
-					if(pos.x <= 200 && tangle.getValue(zeitZaehler) > 0){
-						tangle.setValue(zeitZaehler, tangle.getValue(zeitZaehler)-1 );
-						keyframe(tangle.getValue(zeitZaehler));
-					}else if(pos.x >= (element.width - 200) && tangle.getValue(zeitZaehler) < 13){
-						tangle.setValue(zeitZaehler, tangle.getValue(zeitZaehler)+1 );
-						keyframe(tangle.getValue(zeitZaehler));
+					var zZ = tangle.getValue(zeitZaehler);
+					if(pos.x <= 200 && zZ > 0)
+					{
+						zZ--;
+						keyframe(zZ);
 					}
-					
+					else if(pos.x >= (element.width - 200) && zZ < 13)
+					{
+						zZ++;
+						keyframe(zZ);
+					}
 				}
 				
 			}
-			this.ctx = element.getContext("2d");
 			
 			function keyframe(zZ){
 				var divident;
@@ -99,27 +102,31 @@ function starten(){
 						break;
 				}
 				clicked = true;
+				tangle.setValue(zeitZaehler, zZ);
 				tangle.setValue(oldTime, tangle.getValue(time));
 				tangle.setValue(time, (1 - (divident/4.6)) * zrwidth);
 			}
 		},
 		
-		update: function(element, t, zZ, ot)
+		update: function(element, t, zZ, ot, sS, iS)
 		{
 			var context = this.ctx;
 			var isMinus = t - ot;
 			var step = 0;
+			var opacity = 0;
+			var positionWorldmap;
+			var tangleObject = this.tangleObject;
 			
 			bigWorldMap = this.bigWorldMap;
 			speedy = this.speedy;
 			speechbubble = this.speechbubble;
 			
-			if(!clicked || isMinus == 0){
+			if(!clicked){
 				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
 				draw(positionWorldmap, t);
 			}else{
 				if(isMinus > 0){
-					
+					sS = false;
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
@@ -128,13 +135,15 @@ function starten(){
 						if(step < 0.1){step = 0.1;};
 						ot+=step;
 						if(ot >= t){
+							sS = true;
+							tangleObject.setValues({ intervallStarted:false , oldTime:t });
+							draw(positionWorldmap, ot);
 							clearInterval(animation);
-							clicked = false;
 						}
 					}, 10);
 					
 				}else if(isMinus < 0){
-					
+					sS = false;
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
@@ -143,8 +152,10 @@ function starten(){
 						if(step < 0.1){step = 0.1;};
 						ot-=step;
 						if(ot <= t){
+							sS = true;
+							tangleObject.setValues({ intervallStarted:false , oldTime:t });
+							draw(positionWorldmap, ot);
 							clearInterval(animation);
-							clicked = false;
 						}
 					}, 10);
 					
@@ -153,11 +164,29 @@ function starten(){
 			
 			function draw(value_wm, value_speedy)
 			{
-				context.clearRect(0, 0, 1680, 600);
-				
+				context.globalAlpha = 1.0;
 				context.drawImage(bigWorldMap,0+value_wm,0);
 				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 550)), 500);
-				context.drawImage(speechbubble[zZ], 150+((t/zrwidth)*(element.width - 550)), 200);
+				if(sS)
+				{
+					if(!tangleObject.getValue("intervallStarted"))
+					{
+						opacity = 0;
+						tangleObject.setValue("intervallStarted", true);
+						var animation = setInterval(function()
+						{
+							opacity += 0.1;
+							draw(positionWorldmap, t);
+							if(opacity >= 1)
+							{
+								clicked = false;
+								clearInterval(animation);
+							}
+						}, 50);
+					}
+					context.globalAlpha = opacity;
+					context.drawImage(speechbubble[zZ], 150+((t/zrwidth)*(element.width - 550)), 200);
+				}
 			}
 		}
 	};
@@ -175,11 +204,11 @@ function starten(){
 			this.worldmap.src = "assets/worldmap.jpg";
 			this.selector.src = "assets/selector.png";
 			
-			element.onmousedown = function(){this.md = true};
-			element.onmouseup = function(){this.md = false};
-			element.onmouseleave = function(){this.md = false};
+			element.onmousedown = function(){this.md = true; tangle.setValue("standStill", false);};
+			element.onmouseup = function(){this.md = false; tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false);};
+			element.onmouseleave = function(){ if(this.md){ tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false); this.md = false; }};
 			element.onmousemove = function move(ev){
-				if(this.md && !clicked){
+				if(this.md){
 					pos = getMousePosition(element, ev);
 					if(pos.x < 50){
 						this.time = 0;
@@ -264,6 +293,7 @@ function starten(){
 			context.clearRect(0, 0, 800, 100);
 			context.drawImage(this.worldmap,10,0);
 			context.drawImage(this.selector,0+value,0);
+			
 		}
 	};
 	
@@ -273,6 +303,8 @@ function starten(){
 			this.time = 0;
 			this.zeitZaehler = 0;
 			this.oldTime = 0;
+			this.standStill = true;
+			this.intervallStarted = false;
 		},
 		update:     function () {}
 	});
