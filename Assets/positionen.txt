@@ -12,3 +12,14 @@ Pos10: 7293
 Pos11: 7300
 Pos12: 7387
 Pos13: 7478
+
+477px für 225mio jahre
+
+10902px für 225miojahre
+
+185px für 235mio jahre
+
+12.686px für 235jahre
+
+10902+12686+6816
+
