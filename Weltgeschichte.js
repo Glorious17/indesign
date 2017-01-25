@@ -289,9 +289,47 @@ function starten(){
 		}
 	};
 	
+	Tangle.classes.infoText = {
+		
+		initialize: function(element, options, tangle, zZ)
+		{
+			this.infotext = 
+			[
+				"<h2>Die Erde sagt:</h2>"+
+				"<p>Wisst ihr eigentlich, wie ich entstanden bin? Nein, dann erzähle ich es" +
+				"euch einfach: ich war nicht immer einfach da, sondern bin aus Kometen, Asteroiden, Gas und" +
+				"Staub entstanden. Kurz nach meiner Geburt bin ich noch sehr heiß und bestehe aus flüssiger" +
+				"Lava. Das ist noch keine gute Umgebung für Lebewesen." +
+				"</p>",
+				
+				"<h2>Die Erde sagt:</h2>" +
+				"<p> Einige Zeit ist vergangen und immer wieder schlagen noch Asteroiden" +
+				"und Meteoriten auf mir ein. Aber langsam wird meine Oberfläche kälter, Lava kann zu Gestein" +
+				"erkalten und die feste Erdkruste entsteht. Du musst aber bedenken, dass die kalte Kruste, die mich" +
+				"in deiner Zeit umgibt, nur sehr dünn ist und noch immer auf flüssiger Lava schwimmt. Deshalb gibt" +
+				"es in der Zeit, in der du lebst, auch noch immer Erdbeben und Vulkanausbrüche, weil Lava von" +
+				"unter herauskommen will." +
+				"</p>",
+				
+				"<h2>Die Erde sagt:</h2>" +
+				"<p>Die Erdkruste umgibt mich jetzt schon eine Weile und langsam fängt" +
+				"es an zu regnen. Es regnet so lange und so viel, dass sich die Meere bilden. Heute ist fast meine" +
+				"ganze Oberfläche mit Wasser bedeckt. Die Kontinente, die du kennst, werden erst viel später" +
+				"entstehen." +
+				"</p>"
+			];
+		},
+		update: function(element, zZ)
+		{
+			console.log("update");
+			element.innerHTML = this.infotext[zZ];
+		}
+	}
+	
 	var tangle = new Tangle (document.getElementById("tangleObj"), {
 		initialize: function ()
 		{
+			//this.info = null;
 			this.time = 0;
 			this.zeitZaehler = 0;
 			this.oldTime = 0;
