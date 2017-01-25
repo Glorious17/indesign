@@ -26,7 +26,7 @@ function starten(){
 			this.bigWorldMap.src = "assets/background.png";
 			this.speedy.src = "assets/graphics/INDE_Speedy.png";
 		
-			for(i = 1; i < 15; i++)
+			for(i = 1; i < 14; i++)
 			{
 				var sb = new Image();
 				sb.src = "assets/speechbubble/speechbubble_" + i + ".png";
@@ -44,7 +44,7 @@ function starten(){
 						zZ--;
 						keyframe(zZ);
 					}
-					else if(pos.x >= (element.width - 200) && zZ < 13)
+					else if(pos.x >= (element.width - 200) && zZ < 12)
 					{
 						zZ++;
 						keyframe(zZ);
