@@ -115,49 +115,14 @@ function starten(){
 			speechbubble = this.speechbubble;
 			
 			if(!tangleObject.getValue("clicked")){
-				if(zZ <= 4)
-				{
-					divident = t;
-					divisor = (1.0 - (0.38/4.6)) * zrwidth;
-					positionWorldmap = -5976*(divident/divisor);
-				}
-				else if(zZ > 4 && zZ <= 10)
-				{
-					divident = ( t - ((1.0 - (0.38/4.6)) * zrwidth) );
-					divisor = ( ((1.0 - (0.13/4.6)) * zrwidth) - ((1.0 - (0.38/4.6)) * zrwidth) );
-					positionWorldmap = -(5976) - (10062*(divident / divisor));
-				}
-				else if(zZ > 10)
-				{
-					divident = ( t - ((1.0 - (0.13/4.6)) * zrwidth) );
-					divisor = ( ((1.0 - (0.0025/4.6)) * zrwidth) - ((1.0 - (0.13/4.6)) * zrwidth) );
-					positionWorldmap = -16857 - (11770*(divident/divisor));
-				}
+				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
 				draw(positionWorldmap, t);
 			}else{
 				if(isMinus > 0){
 					sS = false;
 					var animation = setInterval(function()
 					{
-						if(zZ <= 4)
-						{
-							divident = ot;
-							divisor = (1.0 - (0.38/4.6)) * zrwidth;
-							positionWorldmap = -5976*(divident/divisor);
-						}
-						else if(zZ > 4 && zZ <= 10)
-						{
-							divident = ( ot - ((1.0 - (0.38/4.6)) * zrwidth) );
-							divisor = ( ((1.0 - (0.13/4.6)) * zrwidth) - ((1.0 - (0.38/4.6)) * zrwidth) );
-							positionWorldmap = -(5976) - (10062*(divident / divisor));
-						}
-						else if(zZ > 10)
-						{
-							divident = ( ot - ((1.0 - (0.13/4.6)) * zrwidth) );
-							divisor = ( ((1.0 - (0.0025/4.6)) * zrwidth) - ((1.0 - (0.13/4.6)) * zrwidth) );
-							positionWorldmap = -16857 - (11847*(divident/divisor));
-						}
-						
+						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
 						draw(positionWorldmap, ot);
 						if(step < 3 && (t-ot) > 30){step+=0.1;} else if((t-ot) <= 30 && (t-ot) > 0.1){step-=0.1;};
 						if(step < 0.1){step = 0.1;};
@@ -175,24 +140,7 @@ function starten(){
 					sS = false;
 					var animation = setInterval(function()
 					{
-						if(zZ <= 4)
-						{
-							divident = ot;
-							divisor = (1.0 - (0.38/4.6)) * zrwidth;
-							positionWorldmap = -5976*(divident/divisor);
-						}
-						else if(zZ > 4 && zZ <= 10)
-						{
-							divident = ( ot - ((1.0 - (0.38/4.6)) * zrwidth) );
-							divisor = ( ((1.0 - (0.13/4.6)) * zrwidth) - ((1.0 - (0.38/4.6)) * zrwidth) );
-							positionWorldmap = -(5976) - (10062*(divident / divisor));
-						}
-						else if(zZ > 10)
-						{
-							divident = ( ot - ((1.0 - (0.13/4.6)) * zrwidth) );
-							divisor = ( ((1.0 - (0.0025/4.6)) * zrwidth) - ((1.0 - (0.13/4.6)) * zrwidth) );
-							positionWorldmap = -16857 - (11847*(divident/divisor));
-						}
+						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
 						draw(positionWorldmap, ot);
 						if(step < 3 && (ot-t) > 30){step+=0.1;} else if((ot-t) <= 30 && (ot-t) > 0.1){step-=0.1;};
 						if(step < 0.1){step = 0.1;};
