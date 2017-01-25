@@ -10,18 +10,20 @@
 	<!-- Script -->
 	<script type="text/javascript" src="Weltgeschichte.js"></script>
 	<link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+	<link rel="stylesheet" media="screen and (min-width: 1800px) and (max-width: 2000px)" href="style.css" /> 
 </head>
 
 <body onload = "starten()" id="tangleObj">
 	<div id="background">
 		<header>
-			<h1>Die Evolotion</h1>
+			<h1>Die Evolution</h1>
 		</header>
 		<div id="screen-top">
 			<canvas class="MainView" data-var="time zeitZaehler oldTime standStill intervallStarted" id="mainView" width="1680" height="600"></canvas>
 		</div>
 		<div id="screen-bot">
+			<p class="beschriftung"> < Der Zeitregler > </p>
 			<canvas class="Zeitregler" data-var="time clicked" id="canvas" width="800" height="100"></canvas>
 		</div>
 		<div id="knopf_mehr">
@@ -30,15 +32,120 @@
 		<div id="text-area">
 			<div id="text_1">
 				<section class="text">
-					<h2>Die Überschrift</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
-
-					<p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-
-					<p>Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.</p>
-
-					<p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut</p>
+					<h2>Die Erde sagt:</h2>
+					<p>Wisst ihr eigentlich, wie ich entstanden bin? Nein, dann erzähle ich es
+						euch einfach: ich war nicht immer einfach da, sondern bin aus Kometen, Asteroiden, Gas und
+						Staub entstanden. Kurz nach meiner Geburt bin ich noch sehr heiß und bestehe aus flüssiger
+						Lava. Das ist noch keine gute Umgebung für Lebewesen.
+					</p>
 				</section>
+			</div>	
+			<div id="text_2">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p> Einige Zeit ist vergangen und immer wieder schlagen noch Asteroiden
+						und Meteoriten auf mir ein. Aber langsam wird meine Oberfläche kälter, Lava kann zu Gestein
+						erkalten und die feste Erdkruste entsteht. Du musst aber bedenken, dass die kalte Kruste, die mich
+						in deiner Zeit umgibt, nur sehr dünn ist und noch immer auf flüssiger Lava schwimmt. Deshalb gibt
+						es in der Zeit, in der du lebst, auch noch immer Erdbeben und Vulkanausbrüche, weil Lava von
+						unter herauskommen will.
+					</p>
+				</section>	
+			</div>
+			<div id="text_3">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p>Die Erdkruste umgibt mich jetzt schon eine Weile und langsam fängt
+						es an zu regnen. Es regnet so lange und so viel, dass sich die Meere bilden. Heute ist fast meine
+						ganze Oberfläche mit Wasser bedeckt. Die Kontinente, die du kennst, werden erst viel später
+						entstehen.
+					</p>
+				</section>	
+			</div>
+			<div id="text_4">
+				<section class="text">
+					<h2>Das Bakterium sagt:</h2>
+					<p>
+						Servus, ich bin das Cyanobakterium und ich fühl mich gerade sehr
+						wohl in dem Meer. Was ist denn so besonders an mir? Ich bin eines der ersten Bakterien und kann
+						noch dazu Sauerstoff produzieren. Bis jetzt gab es auf der Erde nämlich keinen Sauerstoff. Das
+						heißt, dass der Himmel nicht blau war, wie du ihn kennst sondern rosa. Sauerstoff ist deshalb so
+						wichtig, weil es ohne Sauerstoff gar keine anderen Lebewesen geben würde.
+					</p>
+				</section>	
+			</div>
+			<div id="text_5">
+				<section class="text">
+					<h2>Die Qualle sagt:</h2>
+					<p>
+						Guten Tag, ich bin Herr Qualle und bin eines der ersten komplexeren
+						Lebewesen, die im Meer herumschwimmen. Wie du vielleicht schon weißt, bestehen Quallen fast
+						nur aus Wasser. Mein Körper besteht zu 98% aus Wasser, also habe ich nur 2% Körpermasse. Mit
+						mir schwimmen auch Ringelwürmer und Trilobiten. Was sind Trilobiten, fragst du dich? Das sind
+						sogenannte Urzeitkrebse. Die gibt es heute noch immer und manche können sie sogar zu Hause
+						züchten.
+					</p>
+				</section>	
+			</div>
+			<div id="text_6">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_7">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_8">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_9">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_10">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_11">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_12">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_13">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_14">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
+			</div>
+			<div id="text_15">
+				<section class="text">
+					<h2>Die Erde sagt:</h2>
+					<p></p>
+				</section>	
 			</div>
 		</div>
 		<div id="knopf_oben">
@@ -46,7 +153,7 @@
 		</div>	
 		<footer>
 			<div id="credits">
-				<p>Erstellt von</p>
+				<p class="beschriftung">Erstellt von</p>
 				<ul>
 					<li><a class="footer-link" href="#">Jens Altrock</a></li>
 					<li><a class="footer-link" href="#">Pascal Berlik</a></li>
