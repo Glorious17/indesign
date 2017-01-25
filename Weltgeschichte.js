@@ -163,6 +163,7 @@ function starten(){
 			function draw(value_wm, value_speedy)
 			{
 				context.globalAlpha = 1.0;
+				context.clearRect(0,0,1680,600);
 				context.drawImage(bigWorldMap,0+value_wm,0);
 				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 650)), 400);
 				if(sS)
@@ -171,7 +172,6 @@ function starten(){
 					{
 						tangleObject.setValue("intervallStarted", true);
 						opacity = 0;
-						//tangleObject.setValue("clicked", true);
 						var animation = setInterval(function()
 						{
 							opacity += 0.1;
