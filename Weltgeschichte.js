@@ -1,7 +1,7 @@
 function starten(){
 	
 	var zrwidth = 700;
-	var backgroundWidth = 8322;
+	var backgroundWidth = 30404;
 	
 	function getMousePosition(canvas, ev)
 	{
@@ -23,7 +23,7 @@ function starten(){
 			this.speedy = new Image();
 			this.speechbubble = new Array();
 		
-			this.bigWorldMap.src = "assets/landschaft.png";
+			this.bigWorldMap.src = "assets/background.png";
 			this.speedy.src = "assets/graphics/INDE_Speedy.png";
 		
 			for(i = 1; i < 15; i++)
@@ -64,39 +64,36 @@ function starten(){
 						divident = 4;
 						break;
 					case 2:
-						divident = 3.46;
-						break;
-					case 3:
 						divident = 2.5;
 						break;
-					case 4:
+					case 3:
 						divident = 0.55;
 						break;
-					case 5:
+					case 4:
 						divident = 0.46;
 						break;
-					case 6:
+					case 5:
 						divident = 0.38;
 						break;
-					case 7:
+					case 6:
 						divident = 0.35;
 						break;
-					case 8:
+					case 7:
 						divident = 0.25;
 						break;
-					case 9:
+					case 8:
 						divident = 0.235;
 						break;
-					case 10:
+					case 9:
 						divident = 0.13;
 						break;
-					case 11:
+					case 10:
 						divident = 0.125;
 						break;
-					case 12:
+					case 11:
 						divident = 0.065;
 						break;
-					case 13:
+					case 12:
 						divident = 0.0025;
 						break;
 				}
@@ -118,14 +115,49 @@ function starten(){
 			speechbubble = this.speechbubble;
 			
 			if(!tangleObject.getValue("clicked")){
-				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
+				if(zZ <= 4)
+				{
+					divident = t;
+					divisor = (1.0 - (0.38/4.6)) * zrwidth;
+					positionWorldmap = -5976*(divident/divisor);
+				}
+				else if(zZ > 4 && zZ <= 10)
+				{
+					divident = ( t - ((1.0 - (0.38/4.6)) * zrwidth) );
+					divisor = ( ((1.0 - (0.13/4.6)) * zrwidth) - ((1.0 - (0.38/4.6)) * zrwidth) );
+					positionWorldmap = -(5976) - (10062*(divident / divisor));
+				}
+				else if(zZ > 10)
+				{
+					divident = ( t - ((1.0 - (0.13/4.6)) * zrwidth) );
+					divisor = ( ((1.0 - (0.0025/4.6)) * zrwidth) - ((1.0 - (0.13/4.6)) * zrwidth) );
+					positionWorldmap = -16857 - (11770*(divident/divisor));
+				}
 				draw(positionWorldmap, t);
 			}else{
 				if(isMinus > 0){
 					sS = false;
 					var animation = setInterval(function()
 					{
-						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
+						if(zZ <= 4)
+						{
+							divident = ot;
+							divisor = (1.0 - (0.38/4.6)) * zrwidth;
+							positionWorldmap = -5976*(divident/divisor);
+						}
+						else if(zZ > 4 && zZ <= 10)
+						{
+							divident = ( ot - ((1.0 - (0.38/4.6)) * zrwidth) );
+							divisor = ( ((1.0 - (0.13/4.6)) * zrwidth) - ((1.0 - (0.38/4.6)) * zrwidth) );
+							positionWorldmap = -(5976) - (10062*(divident / divisor));
+						}
+						else if(zZ > 10)
+						{
+							divident = ( ot - ((1.0 - (0.13/4.6)) * zrwidth) );
+							divisor = ( ((1.0 - (0.0025/4.6)) * zrwidth) - ((1.0 - (0.13/4.6)) * zrwidth) );
+							positionWorldmap = -16857 - (11847*(divident/divisor));
+						}
+						
 						draw(positionWorldmap, ot);
 						if(step < 3 && (t-ot) > 30){step+=0.1;} else if((t-ot) <= 30 && (t-ot) > 0.1){step-=0.1;};
 						if(step < 0.1){step = 0.1;};
@@ -143,7 +175,24 @@ function starten(){
 					sS = false;
 					var animation = setInterval(function()
 					{
-						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
+						if(zZ <= 4)
+						{
+							divident = ot;
+							divisor = (1.0 - (0.38/4.6)) * zrwidth;
+							positionWorldmap = -5976*(divident/divisor);
+						}
+						else if(zZ > 4 && zZ <= 10)
+						{
+							divident = ( ot - ((1.0 - (0.38/4.6)) * zrwidth) );
+							divisor = ( ((1.0 - (0.13/4.6)) * zrwidth) - ((1.0 - (0.38/4.6)) * zrwidth) );
+							positionWorldmap = -(5976) - (10062*(divident / divisor));
+						}
+						else if(zZ > 10)
+						{
+							divident = ( ot - ((1.0 - (0.13/4.6)) * zrwidth) );
+							divisor = ( ((1.0 - (0.0025/4.6)) * zrwidth) - ((1.0 - (0.13/4.6)) * zrwidth) );
+							positionWorldmap = -16857 - (11847*(divident/divisor));
+						}
 						draw(positionWorldmap, ot);
 						if(step < 3 && (ot-t) > 30){step+=0.1;} else if((ot-t) <= 30 && (ot-t) > 0.1){step-=0.1;};
 						if(step < 0.1){step = 0.1;};
@@ -228,53 +277,49 @@ function starten(){
 					{
 						tangle.setValue("zeitZaehler", 1);
 						
-					}else if(this.time >= ((1 - (3.46/4.6)) * zrwidth) && this.time < ((1 - (2.5/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (3.46/4.6)) * zrwidth) && this.time < ((1 - (0.55/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 2);
 						
-					}else if(this.time >= ((1 - (2.5/4.6)) * zrwidth) && this.time < ((1 - (0.55/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.55/4.6)) * zrwidth) && this.time < ((1 - (0.46/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 3);
 						
-					}else if(this.time >= ((1 - (0.55/4.6)) * zrwidth) && this.time < ((1 - (0.46/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.46/4.6)) * zrwidth) && this.time < ((1 - (0.38/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 4);
 						
-					}else if(this.time >= ((1 - (0.46/4.6)) * zrwidth) && this.time < ((1 - (0.38/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.38/4.6)) * zrwidth) && this.time < ((1 - (0.35/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 5);
 						
-					}else if(this.time >= ((1 - (0.38/4.6)) * zrwidth) && this.time < ((1 - (0.35/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.35/4.6)) * zrwidth) && this.time < ((1 - (0.25/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 6);
 						
-					}else if(this.time >= ((1 - (0.35/4.6)) * zrwidth) && this.time < ((1 - (0.25/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.25/4.6)) * zrwidth) && this.time < ((1 - (0.235/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 7);
 						
-					}else if(this.time >= ((1 - (0.25/4.6)) * zrwidth) && this.time < ((1 - (0.235/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.235/4.6)) * zrwidth) && this.time < ((1 - (0.13/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 8);
 						
-					}else if(this.time >= ((1 - (0.235/4.6)) * zrwidth) && this.time < ((1 - (0.13/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.13/4.6)) * zrwidth) && this.time < ((1 - (0.125/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 9);
 						
-					}else if(this.time >= ((1 - (0.13/4.6)) * zrwidth) && this.time < ((1 - (0.125/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.125/4.6)) * zrwidth) && this.time < ((1 - (0.065/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 10);
 						
-					}else if(this.time >= ((1 - (0.125/4.6)) * zrwidth) && this.time < ((1 - (0.065/4.6)) * zrwidth))
+					}else if(this.time >= ((1 - (0.065/4.6)) * zrwidth) && this.time < ((1 - (0.0025/4.6)) * zrwidth))
 					{
 						tangle.setValue("zeitZaehler", 11);
 						
-					}else if(this.time >= ((1 - (0.065/4.6)) * zrwidth) && this.time < ((1 - (0.0025/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 12);
-						
 					}else if(this.time >= ((1 - (0.0025/4.6)) * zrwidth) && this.time <= zrwidth)
 					{
-						tangle.setValue("zeitZaehler", 13);
+						tangle.setValue("zeitZaehler", 12);
 					}
 				}
 			}
