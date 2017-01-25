@@ -58,7 +58,7 @@ function starten(){
 				switch(zZ)
 				{
 					case 0:
-						divident = 4.5;
+						divident = 4.6;
 						break;
 					case 1:
 						divident = 4;
@@ -134,6 +134,7 @@ function starten(){
 							sS = true;
 							tangleObject.setValues({ intervallStarted:false , oldTime:t });
 							draw(positionWorldmap, ot);
+							console.log("Pos"+ zZ +": " + (positionWorldmap-840));
 							clearInterval(animation);
 						}
 					}, 10);
@@ -151,6 +152,7 @@ function starten(){
 							sS = true;
 							tangleObject.setValues({ intervallStarted:false , oldTime:t });
 							draw(positionWorldmap, ot);
+							console.log("Pos"+ zZ +": " + (positionWorldmap-840));
 							clearInterval(animation);
 						}
 					}, 10);
@@ -162,13 +164,14 @@ function starten(){
 			{
 				context.globalAlpha = 1.0;
 				context.drawImage(bigWorldMap,0+value_wm,0);
-				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 550)), 500);
+				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 650)), 400);
 				if(sS)
 				{
 					if(!tangleObject.getValue("intervallStarted"))
 					{
-						opacity = 0;
 						tangleObject.setValue("intervallStarted", true);
+						opacity = 0;
+						//tangleObject.setValue("clicked", true);
 						var animation = setInterval(function()
 						{
 							opacity += 0.1;
@@ -181,7 +184,7 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					context.drawImage(speechbubble[zZ], 150+((t/zrwidth)*(element.width - 550)), 200);
+					context.drawImage(speechbubble[zZ], 280+((t/zrwidth)*(element.width - 650)), 300);
 				}
 			}
 		}
