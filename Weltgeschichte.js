@@ -162,7 +162,7 @@ function starten(){
 				context.globalAlpha = 1.0;
 				context.clearRect(0,0,1680,600);
 				context.drawImage(bigWorldMap,0+value_wm,0);
-				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 650)), 400);
+				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 520)), 400);
 				if(sS)
 				{
 					if(!tangleObject.getValue("intervallStarted"))
@@ -181,7 +181,7 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					context.drawImage(speechbubble[zZ], 280+((t/zrwidth)*(element.width - 650)), 300);
+					context.drawImage(speechbubble[zZ], 280+((t/zrwidth)*(element.width - 520)), 300);
 				}
 			}
 		}
