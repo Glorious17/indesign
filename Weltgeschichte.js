@@ -124,7 +124,7 @@ function starten(){
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
 						draw(positionWorldmap, ot);
-						if(step < 3 && (t-ot) > 30){step+=0.1;} else if((t-ot) <= 30 && (t-ot) > 0.1){step-=0.1;};
+						if(step < 1 && (t-ot) > 30){step+=0.01;} else if((t-ot) <= 30 && (t-ot) > 0.1){step-=0.05;};
 						if(step < 0.1){step = 0.1;};
 						ot+=step;
 						if(ot >= t){
@@ -142,7 +142,7 @@ function starten(){
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
 						draw(positionWorldmap, ot);
-						if(step < 3 && (ot-t) > 30){step+=0.1;} else if((ot-t) <= 30 && (ot-t) > 0.1){step-=0.1;};
+						if(step < 1 && (ot-t) > 30){step+=0.1;} else if((ot-t) <= 30 && (ot-t) > 0.1){step-=0.05;};
 						if(step < 0.1){step = 0.1;};
 						ot-=step;
 						if(ot <= t){
@@ -162,7 +162,7 @@ function starten(){
 				context.globalAlpha = 1.0;
 				context.clearRect(0,0,1680,600);
 				context.drawImage(bigWorldMap,0+value_wm,0);
-				context.drawImage(speedy, 0+((value_speedy/zrwidth)*(element.width - 520)), 400);
+				context.drawImage(speedy, 0, 400);
 				if(sS)
 				{
 					if(!tangleObject.getValue("intervallStarted"))
@@ -181,7 +181,7 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					context.drawImage(speechbubble[zZ], 280+((t/zrwidth)*(element.width - 520)), 300);
+					context.drawImage(speechbubble[zZ], 280, 300);
 				}
 			}
 		}
@@ -296,25 +296,25 @@ function starten(){
 			this.infotext = 
 			[
 				"<h2>Die Erde sagt:</h2>"+
-				"<p>Wisst ihr eigentlich, wie ich entstanden bin? Nein, dann erzähle ich es" +
-				"euch einfach: ich war nicht immer einfach da, sondern bin aus Kometen, Asteroiden, Gas und" +
-				"Staub entstanden. Kurz nach meiner Geburt bin ich noch sehr heiß und bestehe aus flüssiger" +
+				"<p>Wisst ihr eigentlich, wie ich entstanden bin? Nein, dann erzähle ich es " +
+				"euch einfach: ich war nicht immer einfach da, sondern bin aus Kometen, Asteroiden, Gas und " +
+				"Staub entstanden. Kurz nach meiner Geburt bin ich noch sehr heiß und bestehe aus flüssiger " +
 				"Lava. Das ist noch keine gute Umgebung für Lebewesen." +
 				"</p>",
 				
 				"<h2>Die Erde sagt:</h2>" +
-				"<p> Einige Zeit ist vergangen und immer wieder schlagen noch Asteroiden" +
-				"und Meteoriten auf mir ein. Aber langsam wird meine Oberfläche kälter, Lava kann zu Gestein" +
-				"erkalten und die feste Erdkruste entsteht. Du musst aber bedenken, dass die kalte Kruste, die mich" +
-				"in deiner Zeit umgibt, nur sehr dünn ist und noch immer auf flüssiger Lava schwimmt. Deshalb gibt" +
-				"es in der Zeit, in der du lebst, auch noch immer Erdbeben und Vulkanausbrüche, weil Lava von" +
-				"unter herauskommen will." +
+				"<p> Einige Zeit ist vergangen und immer wieder schlagen noch Asteroiden " +
+				"und Meteoriten auf mir ein. Aber langsam wird meine Oberfläche kälter, Lava kann zu Gestein " +
+				"erkalten und die feste Erdkruste entsteht. Du musst aber bedenken, dass die kalte Kruste, die mich " +
+				"in deiner Zeit umgibt, nur sehr dünn ist und noch immer auf flüssiger Lava schwimmt. Deshalb gibt " +
+				"es in der Zeit, in der du lebst, auch noch immer Erdbeben und Vulkanausbrüche, weil Lava von " +
+				"unter herauskommen will. " +
 				"</p>",
 				
 				"<h2>Die Erde sagt:</h2>" +
-				"<p>Die Erdkruste umgibt mich jetzt schon eine Weile und langsam fängt" +
-				"es an zu regnen. Es regnet so lange und so viel, dass sich die Meere bilden. Heute ist fast meine" +
-				"ganze Oberfläche mit Wasser bedeckt. Die Kontinente, die du kennst, werden erst viel später" +
+				"<p>Die Erdkruste umgibt mich jetzt schon eine Weile und langsam fängt " +
+				"es an zu regnen. Es regnet so lange und so viel, dass sich die Meere bilden. Heute ist fast meine " +
+				"ganze Oberfläche mit Wasser bedeckt. Die Kontinente, die du kennst, werden erst viel später " +
 				"entstehen." +
 				"</p>"
 			];
