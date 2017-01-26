@@ -21,7 +21,7 @@ function starten(){
 			
 			this.bigWorldMap = new Image();
 			this.speedy = new Image();
-			this.speechbubble = new Array();
+			this.graphics = new Array();
 		
 			this.bigWorldMap.src = "assets/background.png";
 			this.speedy.src = "assets/graphics/INDE_Speedy.png";
@@ -29,8 +29,10 @@ function starten(){
 			for(i = 1; i < 14; i++)
 			{
 				var sb = new Image();
+				var g = new Image();
 				sb.src = "assets/speechbubble/speechbubble_" + i + ".png";
-				this.speechbubble.push(sb);
+				g.src = "assets/graphics/mainView_" + i + ".png";
+				this.graphics.push({speechbubble: sb, graphic: g});
 			}
 			
 			element.onclick = function(ev)
@@ -112,26 +114,25 @@ function starten(){
 			
 			bigWorldMap = this.bigWorldMap;
 			speedy = this.speedy;
-			speechbubble = this.speechbubble;
+			graphics = this.graphics;
 			
 			if(!tangleObject.getValue("clicked")){
 				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
-				draw(positionWorldmap, t);
+				draw(positionWorldmap);
 			}else{
 				if(isMinus > 0){
 					sS = false;
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
-						draw(positionWorldmap, ot);
-						if(step < 1 && (t-ot) > 30){step+=0.01;} else if((t-ot) <= 30 && (t-ot) > 0.1){step-=0.05;};
+						draw(positionWorldmap);
+						if(step < 1 && (t-ot) > 30){step+=0.01;} else if((t-ot) <= 1500 && (t-ot) > 0.01){step-=0.01;};
 						if(step < 0.1){step = 0.1;};
 						ot+=step;
 						if(ot >= t){
 							sS = true;
 							tangleObject.setValues({ intervallStarted:false , oldTime:t });
-							draw(positionWorldmap, ot);
-							console.log("Pos"+ zZ +": " + (positionWorldmap-840));
+							draw(positionWorldmap);
 							clearInterval(animation);
 						}
 					}, 10);
@@ -141,15 +142,14 @@ function starten(){
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
-						draw(positionWorldmap, ot);
-						if(step < 1 && (ot-t) > 30){step+=0.1;} else if((ot-t) <= 30 && (ot-t) > 0.1){step-=0.05;};
+						draw(positionWorldmap);
+						if(step < 1 && (ot-t) > 30){step+=0.01;} else if((ot-t) <= 1500 && (ot-t) > 0.01){step-=0.01;};
 						if(step < 0.1){step = 0.1;};
 						ot-=step;
 						if(ot <= t){
 							sS = true;
 							tangleObject.setValues({ intervallStarted:false , oldTime:t });
-							draw(positionWorldmap, ot);
-							console.log("Pos"+ zZ +": " + (positionWorldmap-840));
+							draw(positionWorldmap);
 							clearInterval(animation);
 						}
 					}, 10);
@@ -157,7 +157,7 @@ function starten(){
 				}
 			}
 			
-			function draw(value_wm, value_speedy)
+			function draw(value_wm)
 			{
 				context.globalAlpha = 1.0;
 				context.clearRect(0,0,1680,600);
@@ -172,7 +172,7 @@ function starten(){
 						var animation = setInterval(function()
 						{
 							opacity += 0.1;
-							draw(positionWorldmap, t);
+							draw(positionWorldmap);
 							if(opacity >= 1)
 							{
 								tangleObject.setValue("clicked", false);
@@ -181,7 +181,27 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					context.drawImage(speechbubble[zZ], 280, 300);
+					context.drawImage(graphics[zZ].speechbubble, 280, 300);
+					switch(zZ)
+					{
+						case 2:
+							context.drawImage(graphics[zZ].graphic, 1000, 200);
+							break;
+						case 3:
+							context.drawImage(graphics[zZ].graphic, 1000, 100);
+							break;
+						case 5:
+							context.drawImage(graphics[zZ].graphic, 1000, 300);
+							break;
+						case 6:
+							context.drawImage(graphics[zZ].graphic, 800, 50);
+							break;
+						case 11:
+							context.drawImage(graphics[zZ].graphic, 1000, 250);
+							break;
+						default:
+							context.drawImage(graphics[zZ].graphic, 1000, 50);
+					}
 				}
 			}
 		}
@@ -300,7 +320,8 @@ function starten(){
 				"euch einfach: ich war nicht immer einfach da, sondern bin aus Kometen, Asteroiden, Gas und " +
 				"Staub entstanden. Kurz nach meiner Geburt bin ich noch sehr heiß und bestehe aus flüssiger " +
 				"Lava. Das ist noch keine gute Umgebung für Lebewesen." +
-				"</p>",
+				"</p>" +
+				"<img class = 'infoPic' src='assets/graphics/mainView_1.png' title='Die heiße Erde'> ",
 				
 				"<h2>Die Erde sagt:</h2>" +
 				"<p> Einige Zeit ist vergangen und immer wieder schlagen noch Asteroiden " +
@@ -309,19 +330,41 @@ function starten(){
 				"in deiner Zeit umgibt, nur sehr dünn ist und noch immer auf flüssiger Lava schwimmt. Deshalb gibt " +
 				"es in der Zeit, in der du lebst, auch noch immer Erdbeben und Vulkanausbrüche, weil Lava von " +
 				"unter herauskommen will. " +
-				"</p>",
+				"</p>"+
+				"<img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'> ",
 				
 				"<h2>Die Erde sagt:</h2>" +
 				"<p>Die Erdkruste umgibt mich jetzt schon eine Weile und langsam fängt " +
 				"es an zu regnen. Es regnet so lange und so viel, dass sich die Meere bilden. Heute ist fast meine " +
 				"ganze Oberfläche mit Wasser bedeckt. Die Kontinente, die du kennst, werden erst viel später " +
-				"entstehen." +
-				"</p>"
+				"entstehen.</p>" +
+				"<img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'> " +
+				"</br>" +
+				"<h2>Das Bakterium sagt:</h2>" +
+				"<p>Servus, ich bin das Cyanobakterium und ich fühl mich gerade sehr wohl in dem Meer. Was ist denn " +
+				"so besonders an mir? Ich bin eines der ersten Bakterien und kann noch dazu Sauerstoff produzieren. " +
+				"Bis jetzt gab es auf der Erde nämlich keinen Sauerstoff. Das heißt, dass der Himmel nicht blau war, " +
+				"wie du ihn kennst sondern rosa. Sauerstoff ist deshalb so wichtig, weil es ohne Sauerstoff gar keine " +
+				"anderen Lebewesen geben würde.</p>"+
+				"<img class = 'infoPic' src='assets/graphics/mainView_3.png' title='Das Cyanobakterium'> ",
+				
+				"<h2>Die Qualle sagt:</h2>" +
+				"<p>Guten Tag, ich bin Herr Qualle und bin eines der ersten komplexeren " +
+				"Lebewesen, die im Meer herumschwimmen. Wie du vielleicht schon weißt, " +
+				"bestehen Quallen fast nur aus Wasser. Mein Körper besteht zu 98% aus Wasser, " +
+				"also habe ich nur 2% Körpermasse. Mit mir schwimmen auch Ringelwürmer und " +
+				"Trilobiten. Was sind Trilobiten, fragst du dich? Das sind sogenannte Urzeitkrebse. " +
+				"Die gibt es heute noch immer und manche können sie sogar zu Hause züchten.</p>" +
+				"<img class = 'infoPic' src='assets/graphics/mainView_4.png' title='Die Qualle'> ",
+				
+				"<h2>Die Erde sagt:</h2>" +
+				"<p>Mittlerweile bin ich noch weiter abgekühlt und durch die Verschiebungen von Platten</p>" +
+				"<img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'> ",
+				
 			];
 		},
 		update: function(element, zZ)
 		{
-			console.log("update");
 			element.innerHTML = this.infotext[zZ];
 		}
 	}
@@ -329,7 +372,6 @@ function starten(){
 	var tangle = new Tangle (document.getElementById("tangleObj"), {
 		initialize: function ()
 		{
-			//this.info = null;
 			this.time = 0;
 			this.zeitZaehler = 0;
 			this.oldTime = 0;
