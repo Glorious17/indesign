@@ -131,70 +131,13 @@ footer {
 		
 }
 
+img {
+	float: right;
+	max-height: 250px;
+}
+
 .footer-link {
 	font-size: 30px;
-}
-
-
-
-/*--------------------TEXTE-------------------*/
-#text_1 {
-	position: absolute;
-	visibility: visible;
-}
-#text_2 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_3 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_4 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_5 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_6 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_7 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_8 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_9 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_10 {
-	position: absolute;
-	visibility: hidden;
-}#text_11 {
-	position: absolute;
-	visibility: hidden;
-}#text_12 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_13 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_14 {
-	position: absolute;
-	visibility: hidden;
-}
-#text_15 {
-	position: absolute;
-	visibility: hidden;
 }
 
 
