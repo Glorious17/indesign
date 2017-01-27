@@ -230,77 +230,94 @@ function starten(){
 			this.worldmap.src = "assets/worldmap.jpg";
 			this.selector.src = "assets/selector.png";
 			
-			element.onmousedown = function(){this.md = true; if(!tangle.getValue(clicked)){tangle.setValue("standStill", false)};};
+			
 			element.onmouseup = function(){this.md = false; if(!tangle.getValue(clicked)){tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false);}};
 			element.onmouseleave = function(){ if(this.md){ tangle.setValue("standStill", true); tangle.setValue("intervallStarted", false); this.md = false; }};
+			
+			element.onmousedown = function(ev){
+				this.md = true;
+				if(!tangle.getValue(clicked))
+				{
+					tangle.setValue("standStill", false);
+					pos = getMousePosition(element, ev);
+					findPosition(pos);
+				};
+			};
+			
 			element.onmousemove = function move(ev){
 				if(this.md && !tangle.getValue(clicked)){
 					pos = getMousePosition(element, ev);
-					if(pos.x < 50){
-						this.time = 0;
-						tangle.setValue(time, this.time);
-					}else if(pos.x >= 50 && pos.x < (zrwidth + 50)){
-						this.time = pos.x - 50;
-						tangle.setValue(time, this.time);
-					}else if(pos.x >= (zrwidth+50)){
-						this.time = zrwidth;
-						tangle.setValue(time, this.time);
-					}
-					tangle.setValue("zeitZaehler", parseInt( (tangle.getValue(time) /70) ));
-					if(this.time >= 0 && this.time < ((1 - (4/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 0);
-						
-					}else if(this.time >= ((1 - (4/4.6)) * zrwidth) && this.time < ((1 - (3.46/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 1);
-						
-					}else if(this.time >= ((1 - (3.46/4.6)) * zrwidth) && this.time < ((1 - (0.55/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 2);
-						
-					}else if(this.time >= ((1 - (0.55/4.6)) * zrwidth) && this.time < ((1 - (0.46/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 3);
-						
-					}else if(this.time >= ((1 - (0.46/4.6)) * zrwidth) && this.time < ((1 - (0.38/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 4);
-						
-					}else if(this.time >= ((1 - (0.38/4.6)) * zrwidth) && this.time < ((1 - (0.35/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 5);
-						
-					}else if(this.time >= ((1 - (0.35/4.6)) * zrwidth) && this.time < ((1 - (0.25/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 6);
-						
-					}else if(this.time >= ((1 - (0.25/4.6)) * zrwidth) && this.time < ((1 - (0.235/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 7);
-						
-					}else if(this.time >= ((1 - (0.235/4.6)) * zrwidth) && this.time < ((1 - (0.13/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 8);
-						
-					}else if(this.time >= ((1 - (0.13/4.6)) * zrwidth) && this.time < ((1 - (0.125/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 9);
-						
-					}else if(this.time >= ((1 - (0.125/4.6)) * zrwidth) && this.time < ((1 - (0.065/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 10);
-						
-					}else if(this.time >= ((1 - (0.065/4.6)) * zrwidth) && this.time < ((1 - (0.0025/4.6)) * zrwidth))
-					{
-						tangle.setValue("zeitZaehler", 11);
-						
-					}else if(this.time >= ((1 - (0.0025/4.6)) * zrwidth) && this.time <= zrwidth)
-					{
-						tangle.setValue("zeitZaehler", 12);
-					}
+					findPosition(pos);
+				}
+			};
+			
+			function findPosition(pos)
+			{
+				if(pos.x < 50){
+					this.time = 0;
+					tangle.setValue(time, this.time);
+				}else if(pos.x >= 50 && pos.x < (zrwidth + 50)){
+					this.time = pos.x - 50;
+					tangle.setValue(time, this.time);
+				}else if(pos.x >= (zrwidth+50)){
+					this.time = zrwidth;
+					tangle.setValue(time, this.time);
+				}
+				tangle.setValue("zeitZaehler", parseInt( (tangle.getValue(time) /70) ));
+				if(this.time >= 0 && this.time < ((1 - (4/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 0);
+					
+				}else if(this.time >= ((1 - (4/4.6)) * zrwidth) && this.time < ((1 - (3.46/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 1);
+					
+				}else if(this.time >= ((1 - (3.46/4.6)) * zrwidth) && this.time < ((1 - (0.55/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 2);
+					
+				}else if(this.time >= ((1 - (0.55/4.6)) * zrwidth) && this.time < ((1 - (0.46/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 3);
+					
+				}else if(this.time >= ((1 - (0.46/4.6)) * zrwidth) && this.time < ((1 - (0.38/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 4);
+					
+				}else if(this.time >= ((1 - (0.38/4.6)) * zrwidth) && this.time < ((1 - (0.35/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 5);
+					
+				}else if(this.time >= ((1 - (0.35/4.6)) * zrwidth) && this.time < ((1 - (0.25/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 6);
+					
+				}else if(this.time >= ((1 - (0.25/4.6)) * zrwidth) && this.time < ((1 - (0.235/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 7);
+					
+				}else if(this.time >= ((1 - (0.235/4.6)) * zrwidth) && this.time < ((1 - (0.13/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 8);
+					
+				}else if(this.time >= ((1 - (0.13/4.6)) * zrwidth) && this.time < ((1 - (0.125/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 9);
+					
+				}else if(this.time >= ((1 - (0.125/4.6)) * zrwidth) && this.time < ((1 - (0.065/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 10);
+					
+				}else if(this.time >= ((1 - (0.065/4.6)) * zrwidth) && this.time < ((1 - (0.0025/4.6)) * zrwidth))
+				{
+					tangle.setValue("zeitZaehler", 11);
+					
+				}else if(this.time >= ((1 - (0.0025/4.6)) * zrwidth) && this.time <= zrwidth)
+				{
+					tangle.setValue("zeitZaehler", 12);
 				}
 			}
+			
 			this.ctx = element.getContext("2d");
 		},
 		
