@@ -18,13 +18,18 @@ function starten(){
 		{
 			this.tangleObject = tangle;
 			this.ctx = element.getContext("2d");
+			this.mo = false;
 			
 			this.bigWorldMap = new Image();
 			this.speedy = new Image();
+			this.leftArrow = new Image();
+			this.rightArrow = new Image();
 			this.graphics = new Array();
 		
 			this.bigWorldMap.src = "assets/background.png";
 			this.speedy.src = "assets/graphics/INDE_Speedy.png";
+			this.leftArrow.src = "assets/Pfeillinks.png";
+			this.rightArrow.src = "assets/Pfeilrechts.png";
 		
 			for(i = 1; i < 14; i++)
 			{
@@ -111,6 +116,8 @@ function starten(){
 			var opacity = 0;
 			var positionWorldmap;
 			var tangleObject = this.tangleObject;
+			var lArrow = this.leftArrow;
+			var rArrow = this.rightArrow;
 			
 			bigWorldMap = this.bigWorldMap;
 			speedy = this.speedy;
@@ -162,7 +169,10 @@ function starten(){
 				context.globalAlpha = 1.0;
 				context.clearRect(0,0,1680,600);
 				context.drawImage(bigWorldMap,0+value_wm,0);
-				context.drawImage(speedy, 0, 400);
+				context.drawImage(speedy, 70, 400);
+				if(zZ > 0)	{context.drawImage(lArrow, 25, 225);}
+				if(zZ < 12)	{context.drawImage(rArrow, element.width-75, 225);}
+				
 				if(sS)
 				{
 					if(!tangleObject.getValue("intervallStarted"))
@@ -181,7 +191,7 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					context.drawImage(graphics[zZ].speechbubble, 280, 300);
+					context.drawImage(graphics[zZ].speechbubble, 350, 300);
 					switch(zZ)
 					{
 						case 2:
@@ -315,52 +325,60 @@ function starten(){
 		{
 			this.infotext = 
 			[
-				"<h2>Die Erde sagt:</h2>"+
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_1.png' title='Die heiße Erde'></td> " +
+				"<td><h2>Die Erde sagt:</h2>"+
 				"<p>Wisst ihr eigentlich, wie ich entstanden bin? Nein, dann erzähle ich es " +
 				"euch einfach: ich war nicht immer einfach da, sondern bin aus Kometen, Asteroiden, Gas und " +
 				"Staub entstanden. Kurz nach meiner Geburt bin ich noch sehr heiß und bestehe aus flüssiger " +
 				"Lava. Das ist noch keine gute Umgebung für Lebewesen." +
-				"</p>" +
-				"<img class = 'infoPic' src='assets/graphics/mainView_1.png' title='Die heiße Erde'> ",
+				"</p></td></tr>" +
+				"</table>",
 				
-				"<h2>Die Erde sagt:</h2>" +
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'></td> " +
+				"<td><h2>Die Erde sagt:</h2>" +
 				"<p> Einige Zeit ist vergangen und immer wieder schlagen noch Asteroiden " +
 				"und Meteoriten auf mir ein. Aber langsam wird meine Oberfläche kälter, Lava kann zu Gestein " +
 				"erkalten und die feste Erdkruste entsteht. Du musst aber bedenken, dass die kalte Kruste, die mich " +
 				"in deiner Zeit umgibt, nur sehr dünn ist und noch immer auf flüssiger Lava schwimmt. Deshalb gibt " +
 				"es in der Zeit, in der du lebst, auch noch immer Erdbeben und Vulkanausbrüche, weil Lava von " +
-				"unter herauskommen will. " +
+				"unter herauskommen will.</td> " +
 				"</p>"+
-				"<img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'> ",
+				"</table>",
 				
-				"<h2>Die Erde sagt:</h2>" +
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'></td> " +
+				"<td><h2>Die Erde sagt:</h2>" +
 				"<p>Die Erdkruste umgibt mich jetzt schon eine Weile und langsam fängt " +
 				"es an zu regnen. Es regnet so lange und so viel, dass sich die Meere bilden. Heute ist fast meine " +
 				"ganze Oberfläche mit Wasser bedeckt. Die Kontinente, die du kennst, werden erst viel später " +
-				"entstehen.</p>" +
-				"<img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'> " +
-				"</br>" +
-				"<h2>Das Bakterium sagt:</h2>" +
+				"entstehen.</p></td></tr>" +
+				"<tr><td><h2>Das Bakterium sagt:</h2>" +
 				"<p>Servus, ich bin das Cyanobakterium und ich fühl mich gerade sehr wohl in dem Meer. Was ist denn " +
 				"so besonders an mir? Ich bin eines der ersten Bakterien und kann noch dazu Sauerstoff produzieren. " +
 				"Bis jetzt gab es auf der Erde nämlich keinen Sauerstoff. Das heißt, dass der Himmel nicht blau war, " +
 				"wie du ihn kennst sondern rosa. Sauerstoff ist deshalb so wichtig, weil es ohne Sauerstoff gar keine " +
-				"anderen Lebewesen geben würde.</p>"+
-				"<img class = 'infoPic' src='assets/graphics/mainView_3.png' title='Das Cyanobakterium'> ",
+				"anderen Lebewesen geben würde.</p></td>"+
+				"<td><img class = 'infoPic' src='assets/graphics/mainView_3.png' title='Das Cyanobakterium'></td></tr> " +
+				"</table>",
 				
-				"<h2>Die Qualle sagt:</h2>" +
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_4.png' title='Die Qualle'></td> " +
+				"<td><h2>Die Qualle sagt:</h2>" +
 				"<p>Guten Tag, ich bin Herr Qualle und bin eines der ersten komplexeren " +
 				"Lebewesen, die im Meer herumschwimmen. Wie du vielleicht schon weißt, " +
 				"bestehen Quallen fast nur aus Wasser. Mein Körper besteht zu 98% aus Wasser, " +
 				"also habe ich nur 2% Körpermasse. Mit mir schwimmen auch Ringelwürmer und " +
 				"Trilobiten. Was sind Trilobiten, fragst du dich? Das sind sogenannte Urzeitkrebse. " +
-				"Die gibt es heute noch immer und manche können sie sogar zu Hause züchten.</p>" +
-				"<img class = 'infoPic' src='assets/graphics/mainView_4.png' title='Die Qualle'> ",
+				"Die gibt es heute noch immer und manche können sie sogar zu Hause züchten.</p></td></tr>" +
+				"</table>",
 				
-				"<h2>Die Erde sagt:</h2>" +
-				"<p>Mittlerweile bin ich noch weiter abgekühlt und durch die Verschiebungen von Platten</p>" +
-				"<img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'> ",
-				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'></td> " +
+				"<td><h2>Die Erde sagt:</h2>" +
+				"<p>Mittlerweile bin ich noch weiter abgekühlt und durch die Verschiebungen von Platten</p></td>" +
+				"</table>"
 			];
 		},
 		update: function(element, zZ)
