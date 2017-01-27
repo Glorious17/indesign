@@ -18,13 +18,18 @@ function starten(){
 		{
 			this.tangleObject = tangle;
 			this.ctx = element.getContext("2d");
+			this.mo = false;
 			
 			this.bigWorldMap = new Image();
 			this.speedy = new Image();
+			this.leftArrow = new Image();
+			this.rightArrow = new Image();
 			this.graphics = new Array();
 		
 			this.bigWorldMap.src = "assets/background.png";
 			this.speedy.src = "assets/graphics/INDE_Speedy.png";
+			this.leftArrow.src = "assets/Pfeillinks.png";
+			this.rightArrow.src = "assets/Pfeilrechts.png";
 		
 			for(i = 1; i < 14; i++)
 			{
@@ -111,6 +116,8 @@ function starten(){
 			var opacity = 0;
 			var positionWorldmap;
 			var tangleObject = this.tangleObject;
+			var lArrow = this.leftArrow;
+			var rArrow = this.rightArrow;
 			
 			bigWorldMap = this.bigWorldMap;
 			speedy = this.speedy;
@@ -162,7 +169,10 @@ function starten(){
 				context.globalAlpha = 1.0;
 				context.clearRect(0,0,1680,600);
 				context.drawImage(bigWorldMap,0+value_wm,0);
-				context.drawImage(speedy, 0, 400);
+				context.drawImage(speedy, 70, 400);
+				if(zZ > 0)	{context.drawImage(lArrow, 25, 225);}
+				if(zZ < 12)	{context.drawImage(rArrow, element.width-75, 225);}
+				
 				if(sS)
 				{
 					if(!tangleObject.getValue("intervallStarted"))
@@ -181,7 +191,7 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					context.drawImage(graphics[zZ].speechbubble, 280, 300);
+					context.drawImage(graphics[zZ].speechbubble, 350, 300);
 					switch(zZ)
 					{
 						case 2:
