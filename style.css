@@ -96,10 +96,9 @@ header {
 }
 
 #text-area {
-	margin-left: 18%;
 	margin-top: 100px;
 	margin-bottom: 50px;
-	height: 620px;
+	height: auto;
 }
 
 .text {
