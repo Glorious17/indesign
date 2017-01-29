@@ -1,6 +1,6 @@
 function starten(){
 	
-	var zrwidth = 700;
+	var zrwidth = 750;
 	var backgroundWidth = 30404;
 	
 	function getMousePosition(canvas, ev)
@@ -17,8 +17,8 @@ function starten(){
 		initialize: function(element, options, tangle, time, zeitZaehler, oldTime, sS, iS)
 		{
 			this.tangleObject = tangle;
-			this.ctx = element.getContext("2d");
 			this.mo = false;
+			this.ctx = element.getContext("2d");
 			
 			this.bigWorldMap = new Image();
 			this.speedy = new Image();
@@ -131,7 +131,7 @@ function starten(){
 				draw(positionWorldmap);
 			}else{
 				if(isMinus > 0){
-					sS = false;
+					tangleObject.setValue("standStill", false);
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
@@ -140,15 +140,12 @@ function starten(){
 						if(step < 0.1){step = 0.1;};
 						ot+=step;
 						if(ot >= t){
-							sS = true;
-							tangleObject.setValues({ intervallStarted:false , oldTime:t });
-							draw(positionWorldmap);
-							clearInterval(animation);
+							stopAnimation(animation);
 						}
 					}, 10);
 					
 				}else if(isMinus < 0){
-					sS = false;
+					tangleObject.setValue("standStill", false);
 					var animation = setInterval(function()
 					{
 						positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
@@ -157,14 +154,19 @@ function starten(){
 						if(step < 0.1){step = 0.1;};
 						ot-=step;
 						if(ot <= t){
-							sS = true;
-							tangleObject.setValues({ intervallStarted:false , oldTime:t });
-							draw(positionWorldmap);
-							clearInterval(animation);
+							stopAnimation(animation);
 						}
 					}, 10);
 					
 				}
+			}
+			
+			function stopAnimation(animation)
+			{
+				positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
+				tangleObject.setValues({standStill:true, intervallStarted:false , oldTime:t });
+				draw(positionWorldmap);
+				clearInterval(animation);
 			}
 			
 			function draw(value_wm)
@@ -174,7 +176,7 @@ function starten(){
 				context.drawImage(bigWorldMap,0+value_wm,-400);
 				context.drawImage(speedy, 70, 400);
 				
-				if(sS)
+				if(tangleObject.getValue("standStill"))
 				{
 					if(!tangleObject.getValue("intervallStarted"))
 					{
@@ -199,7 +201,7 @@ function starten(){
 					switch(zZ)
 					{
 						case 2:
-							context.drawImage(graphics[zZ].graphic, 1000, 200);
+							context.drawImage(graphics[zZ].graphic, 1000, 100);
 							break;
 						case 3:
 							context.drawImage(graphics[zZ].graphic, 1000, 100);
@@ -227,6 +229,7 @@ function starten(){
 		{
 			this.time = 0;
 			this.md = false;
+			this.ctx = element.getContext("2d");
 			
 			this.worldmap = new Image();
 			this.selector = new Image();
@@ -257,13 +260,13 @@ function starten(){
 			
 			function findPosition(pos)
 			{
-				if(pos.x < 50){
+				if(pos.x < 25){
 					this.time = 0;
 					tangle.setValue(time, this.time);
-				}else if(pos.x >= 50 && pos.x < (zrwidth + 50)){
-					this.time = pos.x - 50;
+				}else if(pos.x >= 25 && pos.x < (zrwidth + 25)){
+					this.time = pos.x - 25;
 					tangle.setValue(time, this.time);
-				}else if(pos.x >= (zrwidth+50)){
+				}else if(pos.x >= (zrwidth+25)){
 					this.time = zrwidth;
 					tangle.setValue(time, this.time);
 				}
@@ -321,8 +324,6 @@ function starten(){
 					tangle.setValue("zeitZaehler", 12);
 				}
 			}
-			
-			this.ctx = element.getContext("2d");
 		},
 		
 		update: function (element, value, c)
@@ -381,7 +382,7 @@ function starten(){
 				"Bis jetzt gab es auf der Erde nämlich keinen Sauerstoff. Das heißt, dass der Himmel nicht blau war, " +
 				"wie du ihn kennst sondern rosa. Sauerstoff ist deshalb so wichtig, weil es ohne Sauerstoff gar keine " +
 				"anderen Lebewesen geben würde.</p></td>"+
-				"<td><img class = 'infoPic' src='assets/graphics/mainView_3.png' title='Das Cyanobakterium'></td></tr> " +
+				"<td><img class = 'infoPic' src='assets/graphics/INDE_Cyanobakterium.png' title='Das Cyanobakterium'></td></tr> " +
 				"</table>",
 				
 				"<table cellspacing = '100'>" +
