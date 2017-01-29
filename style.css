@@ -7,19 +7,23 @@
 		
 }
 
+p {
+	font-family: 'Open Sans', sans-serif;
+}
+
 h1 {
-	font-family: 'Bangers', cursive;
+	font-family: 'Erica One', cursive;
 	font-size: 70px;
 	color: white;
 	text-transform: uppercase;
 	margin-bottom: 30px;
 	margin-top: 20px;
 	text-shadow: 0 0 5px black;
-	letter-spacing: 10px;
+	
 }
 
 a {
-	font-family: 'Bangers', cursive;
+	font-family: 'Open Sans', sans-serif;
 	text-shadow: 0 0 1px black;
 	text-decoration: none;
 	color:white;
@@ -38,10 +42,10 @@ ul {
 h2 {
 	font-size: 40px;
 	color: white;
-	font-family: 'Bangers', cursive;
+	font-family: 'Open Sans', sans-serif;
 	text-transform: uppercase;
 	text-shadow: 0 0 3px black;
-	letter-spacing: 5px;
+	
 }
 
 #background {
@@ -123,7 +127,7 @@ footer {
 }
 .beschriftung {
 	letter-spacing: 2px;
-	font-family: 'Bangers', cursive;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 20px;	
 	color: white;
 	text-shadow: 0 0 1px black;
