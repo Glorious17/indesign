@@ -163,7 +163,7 @@ function starten(){
 			
 			function stopAnimation(animation)
 			{
-				positionWorldmap = -(backgroundWidth-1680)*(ot/zrwidth);
+				positionWorldmap = -(backgroundWidth-1680)*(t/zrwidth);
 				tangleObject.setValues({standStill:true, intervallStarted:false , oldTime:t });
 				draw(positionWorldmap);
 				clearInterval(animation);
@@ -399,8 +399,91 @@ function starten(){
 				"<table cellspacing = '100'>" +
 				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'></td> " +
 				"<td><h2>Die Erde sagt:</h2>" +
-				"<p>Mittlerweile bin ich noch weiter abgekühlt und durch die Verschiebungen von Platten</p></td>" +
-				"</table>"
+				"<p>Mittlerweile bin ich noch weiter abgekühlt und durch die Verschiebungen von Platten hat sich " +
+				"langsam mehr Land gebildet. Bis jetzt war meine Oberfläche kahl und nur teilweise mit Sand bedeckt, " + 
+				"aber das wird sich schnell ändern. Die ersten Pflanzen haben es nun an die Oberfläche geschafft. Langsam " +
+				"wird es grüner auf meiner Oberfläche.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_6.png' title='Der Fischschädellurch'></td> " +
+				"<td><h2>Der Fischschädellurch sagt:</h2>" +
+				"<p>Im Wasser tummeln sich so viele andere Tiere. Trilobiten, Nautiluse und viele andere Tiere sind mittlerweile " +
+				"überall zu finden. Da habe ich keinen Platz mehr und am Land ist es so viel ruhiger. Ich bin ein Amphib und das " +
+				"erste Tierchen, das sich an Land traut. Waurem kann ich an Land leben? Naja ich habe eine Lunge so wie du und kann " +
+				"an Land auch super atmen. </p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_7.png' title='Der Hai'></td> " +
+				"<td><h2>Der Hai sagt:</h2>" +
+				"<p>Du hast ja schon gelesen, dass hier die Schnecken entstanden sind, aber die sind total Langweilig. "  +
+				"Haie, mit ihrer legendären Rückenflosse, verbreiten oft Angst und Schrecken und werden als gefräßige Monster " +
+				"dargestellt. Es gibt fast 500 Arten von Haien, die sich in acht Ordnungen mit einer Vielzahl von Familien " +
+				"und Arten aufspalten.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_8.png' title='Die Libelle'></td> " +
+				"<td><h2>Die Libelle sagt:</h2>" +
+				"<p>Ich zähle zu den Fluginsekten und bin auf nahezu allen Kontinenten der Erde, sogar in arktischen " +
+				"Regionen anzutreffen. Wenn das nicht anpassungsfähig ist, weiß ich auch nicht. Ich lebe sehr gerne in " +
+				"unmittelbarer Nähe zu Süßwasser, wobei sich Libellen abhängig von der jeweiligen Art sowohl bei stehenden " +
+				"Gewässern wie Seen, Tümpeln oder Teichen, als auch bei Quellen, Flüssen und in Mooren aufhalten können. " +
+				"Je nach Art können die in vielen leuchtenden Farben schillernden Libellen eine Flügelspannweite zwischen " +
+				"zwanzig Millimetern und zwanzig Zentimetern aufweisen.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_9.png' title='Der Tyrannosaurus Rex'></td> " +
+				"<td><h2>Der Tyrannosaurus sagt:</h2>" +
+				"<p>Ich bin über zehn Meter lang und wiege bis zu sieben Tonnen. Ich und meine Verwandten standen vor 80 " +
+				"Millionen Jahren bis zum Aussterben der Dinosaurier vor 65 Millionen an der Spitze der Nahrungskette. " +
+				"Meine ersten Vorfahren lebten vor etwa 170 Millionen Jahren und waren nur wenig größer als ein Mensch. " +
+				"Ich bin eindeutig sehr klug und obwohl ich nicht besonders gut sehen kann, habe ich ein sehr gutes Gehör. " +
+				"Das hilft mir natürlich sehr bei der Futtersuche.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_10.png' title='Der Archäopterix'></td> " +
+				"<td><h2>Der Archäopterix sagt:</h2>" +
+				"<p>Ich bin kein ganzer Vogel sondern werde als Mosaikform oder Brückentier bezeichnet. Ich bin " +
+				"so groß wie eine Taube und lebe im Oberjura. Leider kann ich noch nicht so fliegen wie die Vögel, " +
+				"die du kennst. Ich muss mich ganz fest anstrengen und auf Bäume klettern um dann ein bisschen " +
+				"rumflattern zu können. Aber meine Krallen eignen sich bestens zum klettern. Beim Laufen schwingt " +
+				"mein Schwanz mit, damit ich besser das Gleichgewicht halten kann.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_11.png' title='Das Känguru'></td> " +
+				"<td><h2>Das Känguru sagt:</h2>" +
+				"<p>Ich habe Milchdrüsen und füttere meinen Nachwuchs mit Milch. Man nennt das auch Säugen. " +
+				"Nun weißt du auch, wie die Säugetiere zu ihrem Namen gekommen sind. Säugetiere bringen ihre " +
+				"Nachkommen meist lebend zur Welt. Sie legen also keine Eier. Außerdem haben fast alle Säugetiere " + 
+				"ein Fell und eine Fettschicht, die sie wärmt.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_2.png' title='Die Erde'></td> " +
+				"<td><h2>Die Erde sagt:</h2>" +
+				"<p>Viele Forscher sind sich nicht einig warum die Dinosaurier ausgestorben sind. " +
+				"Du hast sicher schon einige Theorien gehört. Machen sind der Meinung, dass " +
+				"Meteoriteneinschläge für das Massenaussterben verantwortlich sind. Einige " +
+				"andere denken es waren doch die Vulkanausbrüche schuld sind. Ich weiß es " +
+				"selber nicht so genau, aber leider sterben hier sehr viele verschiedene Arten " +
+				"aus und werden nie wieder auf der Erde leben.</p></td>" +
+				"</table>",
+				
+				"<table cellspacing = '100'>" +
+				"<tr><td><img class = 'infoPic' src='assets/graphics/mainView_13.png' title='Der Homo Erectus'></td> " +
+				"<td><h2>Der Homo Erectus sagt:</h2>" +
+				"<p>Ich bin ein Jäger und Sammler. Ich ernährte mich von Früchten, Wurzelgemüse und Fleisch. " +
+				"Außerdem fertigte ich zahlreiche Werkzeuge an und verwendete das Feuer zum Kochen und Wärmen. " +
+				"Ich und meine Familie lebe ungefähr 1,8 bis 1,3 Millionen Jahre vor deiner Zeit in Afrika, Asien " +
+				"und Europa. Einen Teil meiner Nachfahren kennst du sicher auch bereits: den Neandertaler. Aus dem " +
+				"anderen Teil meiner Familie sind deine Vorfahren entstanden.</p></td>" +
+				"</table>",
+				
 			];
 		},
 		update: function(element, zZ)
