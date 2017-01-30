@@ -427,7 +427,7 @@ function starten(){
 				"<td><h2>Der Fischschädellurch sagt:</h2>" +
 				"<p>Im Wasser tummeln sich so viele andere Tiere. Trilobiten, Nautiluse und viele andere Tiere sind mittlerweile " +
 				"überall zu finden. Da habe ich keinen Platz mehr und am Land ist es so viel ruhiger. Ich bin ein Amphib und das " +
-				"erste Tierchen, das sich an Land traut. Waurem kann ich an Land leben? Naja ich habe eine Lunge so wie du und kann " +
+				"erste Tierchen, das sich an Land traut. Warum kann ich an Land leben? Naja ich habe eine Lunge so wie du und kann " +
 				"an Land auch super atmen. </p></td>" +
 				"</table>",
 				
