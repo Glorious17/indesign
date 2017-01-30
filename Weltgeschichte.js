@@ -194,9 +194,9 @@ function starten(){
 						}, 50);
 					}
 					context.globalAlpha = opacity;
-					if(zZ > 0)	{context.drawImage(lArrow, 25, 225);}
-					if(zZ > 0 && zZ < 12)	{context.drawImage(rArrow, element.width-75, 225);}
-					if(zZ == 0)	{context.drawImage(rArrowW, element.width-75, 225);}
+					if(zZ > 0)	{context.drawImage(lArrow, 25, 275);}
+					if(zZ > 0 && zZ < 12)	{context.drawImage(rArrow, element.width-75, 275);}
+					if(zZ == 0)	{context.drawImage(rArrowW, element.width-75, 275);}
 					context.drawImage(graphics[zZ].speechbubble, 350, 250);
 					switch(zZ)
 					{
@@ -275,11 +275,11 @@ function starten(){
 				{
 					tangle.setValue("zeitZaehler", 0);
 					
-				}else if(this.time >= ((1 - (4/4.6)) * zrwidth) && this.time < ((1 - (3.46/4.6)) * zrwidth))
+				}else if(this.time >= ((1 - (4/4.6)) * zrwidth) && this.time < ((1 - (2.5/4.6)) * zrwidth))
 				{
 					tangle.setValue("zeitZaehler", 1);
 					
-				}else if(this.time >= ((1 - (3.46/4.6)) * zrwidth) && this.time < ((1 - (0.55/4.6)) * zrwidth))
+				}else if(this.time >= ((1 - (2.5/4.6)) * zrwidth) && this.time < ((1 - (0.55/4.6)) * zrwidth))
 				{
 					tangle.setValue("zeitZaehler", 2);
 					
