@@ -25,13 +25,17 @@ function starten(){
 			this.leftArrow = new Image();
 			this.rightArrow = new Image();
 			this.rightArrowWhite = new Image();
+			this.zeitlinie = new Image();
+			this.pfeil = new Image();
 			this.graphics = new Array();
 		
-			this.bigWorldMap.src = "assets/background.png";
+			this.bigWorldMap.src = "assets/background.jpg";
 			this.speedy.src = "assets/graphics/INDE_Speedy.png";
 			this.leftArrow.src = "assets/Pfeillinks.png";
 			this.rightArrow.src = "assets/Pfeilrechts.png";
 			this.rightArrowWhite.src = "assets/Pfeilrechtswhite.png";
+			this.zeitlinie.src = "assets/zeitleiste.jpg"
+			this.pfeil.src = "assets/pfeil.png"
 		
 			for(i = 1; i < 14; i++)
 			{
@@ -121,6 +125,8 @@ function starten(){
 			var lArrow = this.leftArrow;
 			var rArrow = this.rightArrow;
 			var rArrowW = this.rightArrowWhite;
+			var zeitlinie = this.zeitlinie;
+			var pfeil = this.pfeil;
 			
 			bigWorldMap = this.bigWorldMap;
 			speedy = this.speedy;
@@ -175,6 +181,8 @@ function starten(){
 				context.clearRect(0,0,1680,600);
 				context.drawImage(bigWorldMap,0+value_wm,-400);
 				context.drawImage(speedy, 70, 400);
+				context.drawImage(zeitlinie, 0+value_wm, 599);
+				context.drawImage(pfeil, 815,600);
 				
 				if(tangleObject.getValue("standStill"))
 				{
@@ -212,8 +220,17 @@ function starten(){
 						case 6:
 							context.drawImage(graphics[zZ].graphic, 800, 50);
 							break;
+						case 8:
+							context.drawImage(graphics[zZ].graphic, 1000, 150);
+							break;
+						case 10:
+							context.drawImage(graphics[zZ].graphic, 1000, 170);
+							break;
 						case 11:
-							context.drawImage(graphics[zZ].graphic, 1000, 250);
+							context.drawImage(graphics[zZ].graphic, 1000, 350);
+							break;
+						case 12:
+							context.drawImage(graphics[zZ].graphic, 1000, 150);
 							break;
 						default:
 							context.drawImage(graphics[zZ].graphic, 1000, 50);
@@ -234,7 +251,7 @@ function starten(){
 			this.worldmap = new Image();
 			this.selector = new Image();
 			
-			this.worldmap.src = "assets/worldmap.jpg";
+			this.worldmap.src = "assets/zeitregler.jpg";
 			this.selector.src = "assets/selector.png";
 			
 			
@@ -335,7 +352,7 @@ function starten(){
 		{
 			var context = this.ctx;
 			context.clearRect(0, 0, 800, 100);
-			context.drawImage(this.worldmap,10,0);
+			context.drawImage(this.worldmap,0,0);
 			context.drawImage(this.selector,0+value,0);
 			
 		}
