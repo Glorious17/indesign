@@ -227,7 +227,7 @@ function starten(){
 							context.drawImage(graphics[zZ].graphic, 1000, 170);
 							break;
 						case 11:
-							context.drawImage(graphics[zZ].graphic, 1000, 350);
+							context.drawImage(graphics[zZ].graphic, 1000, 300, 500, 268);
 							break;
 						case 12:
 							context.drawImage(graphics[zZ].graphic, 1000, 150);
